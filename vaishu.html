@@ -8,21 +8,23 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 1rem;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to right, #ffecd2, #fcb69f);
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      align-items: flex-start;
+      min-height: 100vh;
       text-align: center;
+      overflow-y: auto;
     }
     .card {
+      width: 100%;
+      max-width: 650px;
       background: #fffaf5;
       padding: 2rem;
       border-radius: 25px;
       box-shadow: 0 10px 30px rgba(255, 153, 153, 0.4);
-      max-width: 650px; /* Thoda bada kiya iframe ke liye */
       animation: fadeIn 1.5s ease-in-out;
     }
     h1 {
@@ -76,7 +78,7 @@
     }
     iframe {
       width: 100%;
-      height: 374px;
+      height: 500px; /* Increased height for full form visibility */
       border: none;
     }
     .love-meter {
