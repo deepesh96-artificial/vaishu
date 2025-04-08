@@ -22,7 +22,7 @@
       padding: 2rem;
       border-radius: 25px;
       box-shadow: 0 10px 30px rgba(255, 153, 153, 0.4);
-      max-width: 550px;
+      max-width: 650px; /* Thoda bada kiya iframe ke liye */
       animation: fadeIn 1.5s ease-in-out;
     }
     h1 {
@@ -74,29 +74,10 @@
     .message-box {
       margin-top: 2rem;
     }
-    .message-box textarea {
+    iframe {
       width: 100%;
-      height: 100px;
-      padding: 0.7rem;
-      border-radius: 15px;
-      border: 1px solid #ddd;
-      resize: none;
-      font-family: 'Poppins', sans-serif;
-    }
-    .message-box button {
-      margin-top: 0.7rem;
-      padding: 0.6rem 1.5rem;
-      font-size: 1rem;
+      height: 374px;
       border: none;
-      border-radius: 25px;
-      background-color: #ff6f91;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .message-box button:hover {
-      background-color: #e85c7d;
-      transform: scale(1.03);
     }
     .love-meter {
       margin-top: 2rem;
@@ -132,42 +113,6 @@
       document.getElementById('proposal-line').style.display = 'block';
       localStorage.setItem('vaishuFriendship', 'true');
     }
-
-    function sendMessage() {
-      const msg = document.getElementById('vaishu-message').value;
-      if (msg.trim() !== '') {
-        alert("Tumhara message save ho gaya 💌\nMessage: " + msg);
-        localStorage.setItem('vaishuCustomMessage', msg);
-
-        // Debugging
-        console.log("Message jo bheja ja raha hai: ", msg);
-
-        // Google Forms submission
-        const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSccz8RsyczatlKGjd0o8UdYNiT61lx16BPVbhHLR7PlnXA_Fg/formResponse';
-        const formData = new FormData();
-        formData.append('entry.1446125579', msg); // Entry ID for "Message" field
-
-        fetch(formUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded' // Optional, for clarity
-          }
-        })
-        .then(() => {
-          console.log("Submission attempt kiya gaya");
-          alert("Message Google Form mein bhej diya gaya!");
-          document.getElementById('vaishu-message').value = ''; // Clear textarea
-        })
-        .catch(error => {
-          console.error("Error: ", error);
-          alert("Kuch galat ho gaya, console check kar!");
-        });
-      } else {
-        alert("Kuch likhna toh padega na 😅");
-      }
-    }
   </script>
 </head>
 <body>
@@ -183,7 +128,7 @@
       Shayad kabhi kuch galat laga ho toh I'm really sorry 🙏
     </p>
     <p>
-      Chal, ek baar dosti se shuru karte hain, bina kisi pressure ke — bas tu khush rahe 🫶
+      Chal, ek baar firse dosti shuru karte hain, bina kisi pressure ke — bas tu khush rahe 🫶
     </p>
 
     <button class="btn" onclick="startFriendship()">Dosti shuru karein 🤝</button>
@@ -193,7 +138,7 @@
     </div>
     <div id="proposal-line" class="choco-msg" style="display: none;">
       💖 Aur haan... ek baat dil se: <br>
-      <strong style="font-size: 1.1rem;">Main tujhe pasand karta hoon... bilkul sachchi waali feelings ke saath 💘</strong>
+      <strong style="font-size: 1.1rem;">Main tujhe as a friend bhi bhout pasand karta hoon... bilkul sachchi waali feelings ke saath 💘</strong>
     </div>
 
     <br />
@@ -201,9 +146,7 @@
 
     <div class="message-box">
       <p><strong>💬 Kya tum mujhe kuch kehna chahti ho?</strong></p>
-      <textarea id="vaishu-message" placeholder="Yahan likho... 💌"></textarea>
-      <br />
-      <button onclick="sendMessage()">Message bhejo</button>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSccz8RsyczatlKGjd0o8UdYNiT61lx16BPVbhHLR7PlnXA_Fg/viewform?embedded=true" frameborder="0">Loading…</iframe>
     </div>
 
     <div class="love-meter">
