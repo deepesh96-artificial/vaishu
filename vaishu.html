@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Vaishu ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #fceabb, #f8b500);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,90 +18,118 @@
       text-align: center;
     }
     .card {
-      background: #fff;
+      background: #fffaf5;
       padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
-      animation: fadeIn 2s ease-in-out;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(255, 153, 153, 0.4);
+      max-width: 550px;
+      animation: fadeIn 1.5s ease-in-out;
     }
     h1 {
-      color: #ff4081;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      color: #ff6f91;
     }
     p {
-      font-size: 1.2rem;
-      color: #333;
+      font-size: 1.1rem;
+      color: #555;
+      margin: 0.6rem 0;
     }
     .btn {
       margin-top: 1rem;
       padding: 0.8rem 2rem;
       font-size: 1rem;
       border: none;
-      border-radius: 25px;
-      background-color: #ff4081;
+      border-radius: 30px;
+      background-color: #ff6f91;
       color: white;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.2s ease;
     }
     .btn:hover {
-      background-color: #e73370;
+      background-color: #e85c7d;
+      transform: scale(1.05);
     }
     .social-links {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
     .social-links a {
-      color: #ff4081;
+      color: #ff6f91;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
+    }
+    .social-links a:hover {
+      color: #d94a6e;
     }
     .choco-msg {
       margin-top: 1rem;
       font-size: 1rem;
-      color: #8d4b00;
+      color: #b14f00;
       font-weight: bold;
     }
     .message-box {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
     .message-box textarea {
       width: 100%;
       height: 100px;
-      padding: 0.5rem;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      padding: 0.7rem;
+      border-radius: 15px;
+      border: 1px solid #ddd;
       resize: none;
+      font-family: 'Poppins', sans-serif;
     }
     .message-box button {
-      margin-top: 0.5rem;
-      padding: 0.5rem 1.5rem;
+      margin-top: 0.7rem;
+      padding: 0.6rem 1.5rem;
       font-size: 1rem;
       border: none;
       border-radius: 25px;
-      background-color: #ff4081;
+      background-color: #ff6f91;
       color: white;
       cursor: pointer;
+      transition: transform 0.2s;
     }
     .message-box button:hover {
-      background-color: #e73370;
+      background-color: #e85c7d;
+      transform: scale(1.03);
+    }
+    .love-meter {
+      margin-top: 2rem;
+    }
+    .love-meter input[type=range] {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: linear-gradient(to right, #ffc3a0, #ff6f91);
+      outline: none;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    .love-meter p {
+      margin: 0.5rem 0;
+      font-weight: bold;
+      color: #ff6f91;
     }
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 111, 145, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 111, 145, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 111, 145, 0); }
     }
   </style>
   <script>
     function startFriendship() {
       alert('Shukriya 😊 — Yeh dosti waapis lane ke liye!');
       document.getElementById('chocolate-msg').style.display = 'block';
+      document.getElementById('proposal-line').style.display = 'block';
       localStorage.setItem('vaishuFriendship', 'true');
     }
 
@@ -109,6 +138,32 @@
       if (msg.trim() !== '') {
         alert("Tumhara message save ho gaya 💌\nMessage: " + msg);
         localStorage.setItem('vaishuCustomMessage', msg);
+
+        // Debugging
+        console.log("Message jo bheja ja raha hai: ", msg);
+
+        // Google Forms submission
+        const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSccz8RsyczatlKGjd0o8UdYNiT61lx16BPVbhHLR7PlnXA_Fg/formResponse';
+        const formData = new FormData();
+        formData.append('entry.1446125579', msg); // Entry ID for "Message" field
+
+        fetch(formUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded' // Optional, for clarity
+          }
+        })
+        .then(() => {
+          console.log("Submission attempt kiya gaya");
+          alert("Message Google Form mein bhej diya gaya!");
+          document.getElementById('vaishu-message').value = ''; // Clear textarea
+        })
+        .catch(error => {
+          console.error("Error: ", error);
+          alert("Kuch galat ho gaya, console check kar!");
+        });
       } else {
         alert("Kuch likhna toh padega na 😅");
       }
@@ -117,29 +172,30 @@
 </head>
 <body>
   <div class="card">
-    <h1>Hey Vaishali 👋</h1>
+    <h1>Hey Vaishali 🌸</h1>
     <p>
-      Mujhe pata hai tu thodi naraz hai... aur ho bhi sakti hai,
-      lekin main chahta hoon sab kuch ek baar fir se thoda normal ho jaye.
+      Pata hai tu thodi naraz hai... lekin main chahta hoon hum waapis ek achhi dosti se shuru karein.
     </p>
     <p>
-      Main tujhe kabhi force nahi karunga... na kabhi kiya. Bas tu meri zindagi mein important thi,
-      hai... aur rahegi. Dosti ke roop mein hi sahi 💛
+      Tu mere liye hamesha special thi... aur rahegi. Har baat mein teri yaad aati hai 💛
     </p>
     <p>
-      Har message mein tujhse connect hone ki koshish thi... bas itna hi tha.
-      Shayad kabhi kuch zyada ho gaya ho toh I'm really sorry 🙏
+      Shayad kabhi kuch galat laga ho toh I'm really sorry 🙏
     </p>
     <p>
-      Tujhse baat karke hamesha acha feel hota tha. Tu alag hai... aur tu best hai.
+      Chal, ek baar dosti se shuru karte hain, bina kisi pressure ke — bas tu khush rahe 🫶
     </p>
-    <p>
-      Agar tu chahe toh ek baar phir se... dosti se shuru karein? 😊
-    </p>
+
     <button class="btn" onclick="startFriendship()">Dosti shuru karein 🤝</button>
+
     <div id="chocolate-msg" class="choco-msg" style="display: none;">
       🍫 Tumhare liye ek chocolate meri taraf se! Yeh yaad hamesha yahin save rahegi 🤍
     </div>
+    <div id="proposal-line" class="choco-msg" style="display: none;">
+      💖 Aur haan... ek baat dil se: <br>
+      <strong style="font-size: 1.1rem;">Main tujhe pasand karta hoon... bilkul sachchi waali feelings ke saath 💘</strong>
+    </div>
+
     <br />
     <button class="btn" onclick="alert('Theek hai... par yaad rahe, tu hamesha special rahegi.')">Abhi nahi 😌</button>
 
@@ -148,6 +204,12 @@
       <textarea id="vaishu-message" placeholder="Yahan likho... 💌"></textarea>
       <br />
       <button onclick="sendMessage()">Message bhejo</button>
+    </div>
+
+    <div class="love-meter">
+      <p>❤️ Love Meter ❤️</p>
+      <input type="range" min="0" max="100" value="80" disabled oninput="this.nextElementSibling.textContent = this.value + '%'" />
+      <p>80%</p>
     </div>
 
     <div class="social-links">
