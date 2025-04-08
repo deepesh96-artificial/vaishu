@@ -21,7 +21,7 @@
       padding: 2rem;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 450px;
+      max-width: 500px;
       animation: fadeIn 2s ease-in-out;
     }
     h1 {
@@ -32,7 +32,7 @@
       color: #333;
     }
     .btn {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       padding: 0.8rem 2rem;
       font-size: 1rem;
       border: none;
@@ -43,6 +43,47 @@
       transition: background 0.3s;
     }
     .btn:hover {
+      background-color: #e73370;
+    }
+    .social-links {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .social-links a {
+      color: #ff4081;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .choco-msg {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #8d4b00;
+      font-weight: bold;
+    }
+    .message-box {
+      margin-top: 1.5rem;
+    }
+    .message-box textarea {
+      width: 100%;
+      height: 100px;
+      padding: 0.5rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+    .message-box button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff4081;
+      color: white;
+      cursor: pointer;
+    }
+    .message-box button:hover {
       background-color: #e73370;
     }
     @keyframes fadeIn {
@@ -56,6 +97,23 @@
       }
     }
   </style>
+  <script>
+    function startFriendship() {
+      alert('Shukriya 😊 — Yeh dosti waapis lane ke liye!');
+      document.getElementById('chocolate-msg').style.display = 'block';
+      localStorage.setItem('vaishuFriendship', 'true');
+    }
+
+    function sendMessage() {
+      const msg = document.getElementById('vaishu-message').value;
+      if (msg.trim() !== '') {
+        alert("Tumhara message save ho gaya 💌\nMessage: " + msg);
+        localStorage.setItem('vaishuCustomMessage', msg);
+      } else {
+        alert("Kuch likhna toh padega na 😅");
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="card">
@@ -78,9 +136,26 @@
     <p>
       Agar tu chahe toh ek baar phir se... dosti se shuru karein? 😊
     </p>
-    <button class="btn" onclick="alert('Shukriya 😊 — Yeh dosti waapis lane ke liye!')">Dosti shuru karein 🤝</button>
-    <br /><br />
+    <button class="btn" onclick="startFriendship()">Dosti shuru karein 🤝</button>
+    <div id="chocolate-msg" class="choco-msg" style="display: none;">
+      🍫 Tumhare liye ek chocolate meri taraf se! Yeh yaad hamesha yahin save rahegi 🤍
+    </div>
+    <br />
     <button class="btn" onclick="alert('Theek hai... par yaad rahe, tu hamesha special rahegi.')">Abhi nahi 😌</button>
+
+    <div class="message-box">
+      <p><strong>💬 Kya tum mujhe kuch kehna chahti ho?</strong></p>
+      <textarea id="vaishu-message" placeholder="Yahan likho... 💌"></textarea>
+      <br />
+      <button onclick="sendMessage()">Message bhejo</button>
+    </div>
+
+    <div class="social-links">
+      <p>📩 Mujhse baat karna ho toh yahan se kar sakti ho:</p>
+      <a href="https://www.instagram.com/risingartificial" target="_blank">Instagram</a>
+      <a href="https://wa.me/918580888533" target="_blank">WhatsApp</a>
+      <a href="https://www.snapchat.com/add/deepesh_885" target="_blank">Snapchat</a>
+    </div>
   </div>
 </body>
 </html>
